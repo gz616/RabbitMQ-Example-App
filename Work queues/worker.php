@@ -18,6 +18,7 @@ $callback = function ($msg) {
     $msg->ack();
 };
 
+$channel->basic_qos(null, 1, null);
 $channel->basic_consume('hello', '', false, false, false, false, $callback);
 
 while ($channel->is_open()) {

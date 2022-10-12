@@ -15,9 +15,10 @@ $callback = function ($msg) {
     echo ' [✔] Received ', $msg->body, "\n";
     sleep(substr_count($msg->body, '.'));
     echo " [✔] Done\n";
+    $msg->ack();
 };
 
-$channel->basic_consume('hello', '', false, true, false, false, $callback);
+$channel->basic_consume('hello', '', false, false, false, false, $callback);
 
 while ($channel->is_open()) {
     $channel->wait();

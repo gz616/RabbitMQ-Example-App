@@ -13,6 +13,7 @@ echo " [*] Waiting for messages. To exit press CTRL+C\n";
 
 $callback = function ($msg) {
     echo ' [✔] Received ', $msg->body, "\n";
+    $msg->ack();
 };
 
 $channel->basic_consume('hello', '', false, false, false, false, $callback);
